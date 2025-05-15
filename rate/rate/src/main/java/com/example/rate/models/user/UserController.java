@@ -21,12 +21,12 @@ public class UserController {
         return ApiResponse.<UserResponse>builder().result(userService.getMyInfor()).build();
     }
 
-    @GetMapping("{userId}")
+    @GetMapping("/{userId}")
     UserResponse getUserByUserName(@PathVariable String userId) {
         return userService.getUserByUserName(userId);
     }
 
-    @PutMapping("{userId}")
+    @PutMapping("/{userId}")
     UserResponse updateUser(@RequestBody UserUpdateRequest request, @PathVariable String userId) {
         return userService.updateUser(request, userId);
     }

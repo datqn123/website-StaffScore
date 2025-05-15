@@ -1,5 +1,6 @@
 package com.example.rate.models.user;
 
+import com.example.rate.constant.PredefinedRole;
 import com.example.rate.validatator.DobConstraint;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -27,4 +28,8 @@ public class UserCreationRequest {
     private LocalDate dob;
     private String sex;
     private String department;
+    private String cccd;
+    private LocalDate provided_at;
+    private String provided_local;
+    private String role;
 }

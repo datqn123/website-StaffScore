@@ -37,7 +37,7 @@ public class ContractService {
         return contractRepository.findAll();
     }
 
-    void delete(String id) {
+    public void delete(String id) {
         contractRepository.deleteById(id);
     }
 }

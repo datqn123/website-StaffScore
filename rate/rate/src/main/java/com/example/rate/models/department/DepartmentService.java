@@ -1,4 +1,4 @@
-package com.example.rate.models.admin;
+package com.example.rate.models.department;
 
 import com.example.rate.exception.AppException;
 import com.example.rate.exception.ErrorCode;
@@ -7,6 +7,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,9 +32,14 @@ public class DepartmentService {
         }
         return departmentMapper.toDepartmentResponse(department);
     }
-
+    @PreAuthorize("hasAuthority('GET_ALL_DEPARTMENT')")
     public List<Department> getAll() {
         return departmentRepository.findAll();
+    }
+
+    @PreAuthorize("hasAuthority('GET_MY_DEPARTMENT')")
+    public DepartmentResponse getOneDepartment(String departmentId) {
+        return departmentMapper.toDepartmentResponse(departmentRepository.findById(departmentId).orElseThrow(() -> new AppException(ErrorCode.DEPARTMENT_NOT_EXISTED)));
     }
 
     public DepartmentResponse updateDepartment(DepartmentUpdateRequest request, String departmentId) {
@@ -46,8 +52,5 @@ public class DepartmentService {
         departmentRepository.deleteById(departmentId);
     }
 
-    public Department findByName(String departmentName) {
-        Department department = departmentRepository.findByDepartmentName(departmentName).orElseThrow(() -> new AppException(ErrorCode.DEPARTMENT_NOT_EXISTED));
-        return department;
-    }
+
 }

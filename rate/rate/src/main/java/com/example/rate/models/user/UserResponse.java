@@ -1,9 +1,8 @@
 package com.example.rate.models.user;
 
-import com.example.rate.models.admin.Department;
-import com.example.rate.models.report.PerformanceReport;
+import com.example.rate.models.department.Department;
+import com.example.rate.models.contract.Contract;
 import com.example.rate.models.role.Role;
-import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,14 +16,17 @@ import java.util.Set;
 @NoArgsConstructor
 @Builder
 public class UserResponse {
-    @Id
     private String id;
+    private Department department;
     private String username;
+    private String password;
     private String firstname;
     private String lastname;
     private LocalDate dob;
     private String sex;
-    Set<Role> roles;
-    private Set<PerformanceReport> performanceReports;
-    private Department department_id;
+    private String cccd;
+    private LocalDate provided_at;
+    private String provided_local;
+    private Set<Role> roles;
+    private Contract contract;
 }

@@ -1,5 +1,6 @@
 package com.example.rate.models.admin;
 
+import com.example.rate.models.department.*;
 import com.example.rate.models.user.UserCreationRequest;
 import com.example.rate.dto.response.ApiResponse;
 import com.example.rate.models.user.UserResponse;
@@ -23,28 +24,6 @@ import java.util.List;
 public class AdminController {
     DepartmentService departmentService;
     UserService userService;
-
-    @PostMapping("/department")
-    ApiResponse<DepartmentResponse> createDepartment(@RequestBody DepartmentRequest request) {
-        ApiResponse<DepartmentResponse> apiResponse = new ApiResponse<>();
-        apiResponse.setResult(departmentService.createDepartment(request));
-        return apiResponse;
-    }
-
-    @GetMapping("/department")
-    List<Department> getAllDepartment() {
-        return departmentService.getAll();
-    }
-
-    @PutMapping("/department/{departmentId}")
-    ApiResponse<DepartmentResponse> updateDepartment(@RequestBody DepartmentUpdateRequest request, @PathVariable String departmentId){
-        return ApiResponse.<DepartmentResponse>builder().result(departmentService.updateDepartment(request, departmentId)).build();
-    }
-
-    @DeleteMapping("/department/{departmentId}")
-    void deleteDepartment(@PathVariable String departmentId) {
-        departmentService.deleteDepartment(departmentId);
-    }
 
     @PostMapping
     ApiResponse<UserResponse> creataUser(@RequestBody @Valid UserCreationRequest request) {

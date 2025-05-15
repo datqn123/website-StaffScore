@@ -22,7 +22,7 @@ public class ContractController {
         return apiResponse;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{username}")
     ApiResponse<ContractResponse> getOne(@PathVariable String id) {
         return ApiResponse.<ContractResponse>builder().result(contractService.getOne(id)).build();
     }

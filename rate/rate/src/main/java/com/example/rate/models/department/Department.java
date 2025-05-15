@@ -1,4 +1,4 @@
-package com.example.rate.models.admin;
+package com.example.rate.models.department;
 
 import jakarta.persistence.*;
 import lombok.*;

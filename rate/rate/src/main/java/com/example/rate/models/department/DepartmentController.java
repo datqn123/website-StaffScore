@@ -1,0 +1,55 @@
+package com.example.rate.models.department;
+
+import com.example.rate.dto.response.ApiResponse;
+import com.example.rate.models.user.User;
+import com.example.rate.models.user.UserCreationRequest;
+import com.example.rate.models.user.UserResponse;
+import com.example.rate.models.user.UserService;
+import jakarta.validation.Valid;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@Slf4j
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@RequiredArgsConstructor
+@RestController
+@RequestMapping
+public class DepartmentController {
+    DepartmentService departmentService;
+    UserService userService;
+
+    @PostMapping("/department")
+    ApiResponse<DepartmentResponse> createDepartment(@RequestBody DepartmentRequest request) {
+        ApiResponse<DepartmentResponse> apiResponse = new ApiResponse<>();
+        apiResponse.setResult(departmentService.createDepartment(request));
+        return apiResponse;
+    }
+
+    @GetMapping("/department")
+    List<Department> getAllDepartment() {
+        return departmentService.getAll();
+    }
+
+    @GetMapping("/department/{departmentId}")
+    ApiResponse<DepartmentResponse> getOneDepartment(@PathVariable String departmentId) {
+        return ApiResponse.<DepartmentResponse>builder().result(departmentService.getOneDepartment(departmentId)).build();
+    }
+
+    @PutMapping("/department/{departmentId}")
+    ApiResponse<DepartmentResponse> updateDepartment(@RequestBody DepartmentUpdateRequest request, @PathVariable String departmentId){
+        return ApiResponse.<DepartmentResponse>builder().result(departmentService.updateDepartment(request, departmentId)).build();
+    }
+
+    @DeleteMapping("/department/{departmentId}")
+    void deleteDepartment(@PathVariable String departmentId) {
+        departmentService.deleteDepartment(departmentId);
+    }
+}

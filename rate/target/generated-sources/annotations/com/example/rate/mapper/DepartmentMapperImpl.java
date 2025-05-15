@@ -1,15 +1,15 @@
 package com.example.rate.mapper;
 
-import com.example.rate.models.admin.Department;
-import com.example.rate.models.admin.DepartmentRequest;
-import com.example.rate.models.admin.DepartmentResponse;
-import com.example.rate.models.admin.DepartmentUpdateRequest;
+import com.example.rate.models.department.Department;
+import com.example.rate.models.department.DepartmentRequest;
+import com.example.rate.models.department.DepartmentResponse;
+import com.example.rate.models.department.DepartmentUpdateRequest;
 import javax.annotation.processing.Generated;
 import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-05-12T00:49:06+0700",
+    date = "2025-05-15T09:59:55+0700",
     comments = "version: 1.6.3, compiler: javac, environment: Java 21.0.7 (Oracle Corporation)"
 )
 @Component

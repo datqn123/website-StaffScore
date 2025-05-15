@@ -1,4 +1,4 @@
-package com.example.rate.models.admin;
+package com.example.rate.models.department;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
